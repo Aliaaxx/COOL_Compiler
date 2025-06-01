@@ -1,0 +1,25 @@
+package main.java.compiler.ast;
+
+public class If extends Expression {
+    public final Expression cond;
+    public final Expression thenBranch;
+    public final Expression elseBranch;
+
+    public If(Expression cond, Expression thenBranch, Expression elseBranch,
+              int line, int column) {
+        super(line, column);
+        this.cond = cond;
+        this.thenBranch = thenBranch;
+        this.elseBranch = elseBranch;
+    }
+
+    @Override
+    public <T> T accept(ASTVisitor<T> visitor) {
+        return visitor.visit(this);
+    }
+
+    @Override
+    public String toString() {
+        return "If(" + cond + " then " + thenBranch + " else " + elseBranch + ")";
+    }
+}
